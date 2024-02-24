@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ITreeOptions, TreeNode} from from '@circlon/angular-tree-component';
+import { ITreeOptions, TreeNode} from '@circlon/angular-tree-component';
 
 @Component({
   selector: 'app-async',

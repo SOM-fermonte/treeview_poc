@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { TreeModule } from from '@circlon/angular-tree-component';
+import { TreeModule } from '@circlon/angular-tree-component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
