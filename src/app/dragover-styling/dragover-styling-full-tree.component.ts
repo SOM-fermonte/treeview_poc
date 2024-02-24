@@ -6,7 +6,7 @@ import {
   KEYS,
   IActionMapping,
   ITreeOptions
-} from 'angular-tree-component';
+} from from '@circlon/angular-tree-component';
 
 const actionMapping: IActionMapping = {
   mouse: {

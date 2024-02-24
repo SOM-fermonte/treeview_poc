@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { ITreeOptions, TREE_ACTIONS, TreeNode, TreeModel } from 'angular-tree-component';
+import { ITreeOptions, TREE_ACTIONS, TreeNode, TreeModel } from from '@circlon/angular-tree-component';
 
 @Component({
   selector: 'app-contextmenu',
