@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-// TODO: link to dist version
+
 @import 'angular-tree-component.css';
 .reverse tree-node-expander {
   order: 0;
