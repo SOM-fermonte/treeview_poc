@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import from '@circlon/angular-tree-component.css';
+@import 'angular-tree-component.css';
 .reverse tree-node-expander {
   order: 0;
 }
