@@ -78,16 +78,21 @@ tree-node:last-child > .tree-node > .tree-children::after {
   padding: 8px;
 }
 
-.toggle-button{
-  grid-area: toggle-button;
-  padding-top: 10px;
-  padding-bottom: 10px;
+.common-button{
+  padding-top: 6px;
+  padding-bottom: 6px;
   padding-left: 12px;
   padding-right: 12px;
   border-radius: 2px;
   border-width: 0;
-  background: teal;
+  background: #277c78;
   color: white;
+  font-size: 14px;
+  height: 32px;
+}
+
+.common-button.toggle{
+  grid-area: toggle-button;
 }
 
 .message-label{
@@ -102,18 +107,152 @@ tree-node:last-child > .tree-node > .tree-children::after {
 
 .branch-end-grid{
   display: grid;
-  grid-template-areas: 'toggle-label toggle-button message-label message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input';
+  grid-template-areas: 'slider message-label message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input message-input';
   gap: 8px;
+  padding: 8px;
 }
 
 .node-option-selector {
   padding: 8px;
 }
 
-.node-buttons-grid{
+.common-button.add-option{
+  grid-area: add-option;
+}
 
+.common-button.add-question{
+  grid-area: add-question;
+}
+
+.common-button.add-end{
+  grid-area: add-end;
+}
+
+.common-button.details{
+  grid-area: qdetails;
+}
+
+.common-button.deleteitem{
+  grid-area: deleteitem;
+  background: #b30518;
+}
+
+.spacer{
+  grid-area: spacer;
+}
+
+.node-buttons-grid{
+  display: grid;
+  grid-template-areas: 'add-option add-question add-end spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer qdetails deleteitem';
+  gap: 8px;
+  padding: 8px;
 }
 
 .padded-label {
   font-weight: 500;
 }
+
+.common-button.test-button{
+  grid-area: test-button;
+}
+
+.common-button.save-button{
+  grid-area: save-button;
+}
+
+.common-button.clear-button{
+  grid-area: clear-button;
+  background: #b30518;
+}
+
+.page-buttons-grid{
+  height: 40px;
+  width: 1200px;
+  display: grid;
+  grid-template-areas: 'test-button spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer save-button clear-button';
+  gap: 8px;
+  padding: 8px;
+}
+
+
+
+/* ----- */
+/* ----- */
+/* ----- */
+/* ----- */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  grid-area: slider;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #707070;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #277c78;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(55px);
+  -ms-transform: translateX(55px);
+  transform: translateX(65px);
+}
+
+.on
+{
+  display: none;
+}
+
+.on, .off
+{
+  color: white;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  font-size: 14px;
+}
+
+input:checked+ .slider .on
+{display: block;}
+
+input:checked + .slider .off
+{display: none;}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;}

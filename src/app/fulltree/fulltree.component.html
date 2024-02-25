@@ -1,7 +1,7 @@
 <form>
   <!-- <input #filter (keyup)="filterNodes(filter.value, tree)" placeholder="filter nodes"/> -->
 </form>
-<div style="height: 400px; width: 1200px; overflow: hidden;">
+<div style="height: 650px; width: 1200px; overflow: hidden;">
 
   <tree-root
     #tree
@@ -28,7 +28,6 @@
       <ng-container *ngIf="optionValue == 'question'">
         <div id="question{{node.data.name}}{{childrenCount(node)}}">
           <div id="question">
-            <!-- <label class= "padded-label">Question</label> -->
             <div><input type="text" placeholder="Type to search for questions" class="node-input"></div>
           </div>
         </div>
@@ -36,27 +35,40 @@
       <ng-container *ngIf="optionValue == 'branchend'">
         <div id="branchend{{node.data.name}}{{childrenCount(node)}}">
           <div id="branchend">
-            <!-- <label class= "padded-label">End of branch</label> -->
             <div class="branch-end-grid">
-              <label class="toggle-label">Click to toggle</label>
-              <button id="toggle" class="toggle-button">Pass</button>
+              <label class="switch">
+                <input type="checkbox" id="togBtn">
+                <div class="slider round" style="display: inline-block;"> 
+                  <span class="on">Pass</span>
+                  <span class="off">Fail</span>
+                </div>
+              </label>
               <label class="message-label">Message</label>
               <input type="text" placeholder="Please type a message to display" class="message-input">
             </div>
           </div>
         </div>
       </ng-container>
+      <div id="node-buttons" class="node-buttons-grid">
+        <button id="add-option" class="common-button add-option">+ Add response option</button>
+        <button id="add-question" class="common-button add-question">+ Add question</button>
+        <button id="add-end" class="common-button add-end">+ Add end of branch</button>
+        <div class="spacer"></div>
+        <button id="qdetails" class="common-button qdetails">View details</button>
+        <button id="deleteitem" class="common-button deleteitem">Delete</button>
+      </div>
     </ng-template>
     <ng-template #loadingTemplate>Loading, please hold....</ng-template>
   </tree-root>
 </div>
 <br>
-<div id="actionbuttons" style="height: 40px; width: 1200px;">
-  <button id="test">Test</button>
-  <button id="savetree">Save tree</button>
-  <button id="clearTree">Clear tree</button>
+<div id="actionbuttons" class="page-buttons-grid">
+  <button id="test" class="common-button test-button">Test</button>
+  <button id="savetree"class="common-button save-button">Save tree</button>
+  <div class="spacer"></div>
+  <button id="clearTree"class="common-button clear-button">Clear tree</button>
 </div>
-<p>API:</p>
+<!-- <p>API:</p>
 <button (click)="tree.treeModel.focusNextNode()">next node</button>
 <button (click)="tree.treeModel.focusPreviousNode()">previous node</button>
 <button (click)="tree.treeModel.focusDrillDown()">drill down</button>
@@ -97,4 +109,4 @@
 <button
   (click)="activeNodes(tree.treeModel)">
   getActiveNodes()
-</button>
+</button> -->
