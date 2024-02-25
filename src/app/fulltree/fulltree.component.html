@@ -20,10 +20,11 @@
     </tree-root>
   </div>
   <br>
-  <p>Keys:</p>
-  down | up | left | right | space | enter
-  <p>Mouse:</p>
-  click to select | shift+click to select multi
+  <div id="actionbuttons" style="height: 40px; width: 1200px;">
+    <button id="test">Test</button>
+    <button id="savetree">Save tree</button>
+    <button id="clearTree">Clear tree</button>
+  </div>
   <p>API:</p>
   <button (click)="tree.treeModel.focusNextNode()">next node</button>
   <button (click)="tree.treeModel.focusPreviousNode()">previous node</button>
