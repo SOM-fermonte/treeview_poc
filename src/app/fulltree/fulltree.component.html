@@ -12,9 +12,15 @@
       (initialized)="onInitialized(tree)"
     >
       <ng-template #treeNodeTemplate let-node>
-        <span title="{{node.data.subTitle}}">{{ node.data.name }}</span>
+        <!-- <span title="{{node.data.subTitle}}">{{ node.data.name }}</span>
         <span class="pull-right">{{ childrenCount(node) }}</span>
-        <button (click)="go($event)">Custom Action</button>
+        <button (click)="go($event)">Custom Action</button> -->
+        <div id="{{node.data.name}}{{childrenCount(node)}}">
+          <div id="response">
+            <label style="color: black;">Response Option</label>
+            <input></input>
+          </div>
+        </div>
       </ng-template>
       <ng-template #loadingTemplate>Loading, please hold....</ng-template>
     </tree-root>
