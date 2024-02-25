@@ -44,7 +44,7 @@ const actionMapping: IActionMapping = {
         margin: 0 3px;
       }`
   ],
-  template: 'fulltree.component.html'
+  templateUrl: './fulltree.component.html'
 })
 export class FullTreeComponent implements OnInit {
   nodes: any[];
