@@ -1,75 +1,100 @@
 <form>
-    <input #filter (keyup)="filterNodes(filter.value, tree)" placeholder="filter nodes"/>
-  </form>
-  <div style="height: 400px; width: 1200px; overflow: hidden;">
+  <!-- <input #filter (keyup)="filterNodes(filter.value, tree)" placeholder="filter nodes"/> -->
+</form>
+<div style="height: 400px; width: 1200px; overflow: hidden;">
 
-    <tree-root
-      #tree
-      [nodes]="nodes"
-      [options]="customTemplateStringOptions"
-      [focused]="true"
-      (event)="onEvent($event)"
-      (initialized)="onInitialized(tree)"
-    >
-      <ng-template #treeNodeTemplate let-node>
-        <!-- <span title="{{node.data.subTitle}}">{{ node.data.name }}</span>
-        <span class="pull-right">{{ childrenCount(node) }}</span>
-        <button (click)="go($event)">Custom Action</button> -->
-        <div id="{{node.data.name}}{{childrenCount(node)}}">
-          <div id="response">
-            <label style="color: black;">Response Option</label>
-            <input type="text" value="Enter an option">
+  <tree-root
+    #tree
+    [nodes]="nodes"
+    [options]="customTemplateStringOptions"
+    [focused]="true"
+    (event)="onEvent($event)"
+    (initialized)="onInitialized(tree)"
+  >
+    <ng-template #treeNodeTemplate let-node>
+      <!-- <span title="{{node.data.subTitle}}">{{ node.data.name }}</span>
+      <span class="pull-right">{{ childrenCount(node) }}</span>
+      <button (click)="go($event)">Custom Action</button> -->
+      <div id="option{{node.data.name}}{{childrenCount(node)}}">
+        <div id="response">
+          <label class="padded-label">Response Option</label>
+          <div><input type="text" placeholder="Enter an option" class="node-input"></div>
+        </div>
+      </div>
+      <select id="nextselect" class="node-option-selector" [(ngModel)]="optionValue">
+        <option value="question">Question</option>
+        <option value="branchend">End of branch</option>
+      </select>
+      <ng-container *ngIf="optionValue == 'question'">
+        <div id="question{{node.data.name}}{{childrenCount(node)}}">
+          <div id="question">
+            <!-- <label class= "padded-label">Question</label> -->
+            <div><input type="text" placeholder="Type to search for questions" class="node-input"></div>
           </div>
         </div>
-      </ng-template>
-      <ng-template #loadingTemplate>Loading, please hold....</ng-template>
-    </tree-root>
-  </div>
-  <br>
-  <div id="actionbuttons" style="height: 40px; width: 1200px;">
-    <button id="test">Test</button>
-    <button id="savetree">Save tree</button>
-    <button id="clearTree">Clear tree</button>
-  </div>
-  <p>API:</p>
-  <button (click)="tree.treeModel.focusNextNode()">next node</button>
-  <button (click)="tree.treeModel.focusPreviousNode()">previous node</button>
-  <button (click)="tree.treeModel.focusDrillDown()">drill down</button>
-  <button (click)="tree.treeModel.focusDrillUp()">drill up</button>
-  <button (click)="customTemplateStringOptions.allowDrag = true">allowDrag</button>
-  <p></p>
-  <button
-    [disabled]="!tree.treeModel.getFocusedNode()"
-    (click)="tree.treeModel.getFocusedNode().toggleActivated()">
-    {{ tree.treeModel.getFocusedNode()?.isActive ? 'deactivate' : 'activate' }}
-  </button>
-  <button
-    [disabled]="!tree.treeModel.getFocusedNode()"
-    (click)="tree.treeModel.getFocusedNode().toggleExpanded()">
-    {{ tree.treeModel.getFocusedNode()?.isExpanded ? 'collapse' : 'expand' }}
-  </button>
-  <button
-    [disabled]="!tree.treeModel.getFocusedNode()"
-    (click)="tree.treeModel.getFocusedNode().blur()">
-    blur
-  </button>
-  <button
-    (click)="addNode(tree)">
-    Add Node
-  </button>
-  <button
-    (click)="activateSubSub(tree)">
-    Activate inner node
-  </button>
-  <button
-    (click)="tree.treeModel.expandAll()">
-    Expand All
-  </button>
-  <button
-    (click)="tree.treeModel.collapseAll()">
-    Collapse All
-  </button>
-  <button
-    (click)="activeNodes(tree.treeModel)">
-    getActiveNodes()
-  </button>
+      </ng-container>
+      <ng-container *ngIf="optionValue == 'branchend'">
+        <div id="branchend{{node.data.name}}{{childrenCount(node)}}">
+          <div id="branchend">
+            <!-- <label class= "padded-label">End of branch</label> -->
+            <div class="branch-end-grid">
+              <label class="toggle-label">Click to toggle</label>
+              <button id="toggle" class="toggle-button">Pass</button>
+              <label class="message-label">Message</label>
+              <input type="text" placeholder="Please type a message to display" class="message-input">
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-template>
+    <ng-template #loadingTemplate>Loading, please hold....</ng-template>
+  </tree-root>
+</div>
+<br>
+<div id="actionbuttons" style="height: 40px; width: 1200px;">
+  <button id="test">Test</button>
+  <button id="savetree">Save tree</button>
+  <button id="clearTree">Clear tree</button>
+</div>
+<p>API:</p>
+<button (click)="tree.treeModel.focusNextNode()">next node</button>
+<button (click)="tree.treeModel.focusPreviousNode()">previous node</button>
+<button (click)="tree.treeModel.focusDrillDown()">drill down</button>
+<button (click)="tree.treeModel.focusDrillUp()">drill up</button>
+<button (click)="customTemplateStringOptions.allowDrag = true">allowDrag</button>
+<p></p>
+<button
+  [disabled]="!tree.treeModel.getFocusedNode()"
+  (click)="tree.treeModel.getFocusedNode().toggleActivated()">
+  {{ tree.treeModel.getFocusedNode()?.isActive ? 'deactivate' : 'activate' }}
+</button>
+<button
+  [disabled]="!tree.treeModel.getFocusedNode()"
+  (click)="tree.treeModel.getFocusedNode().toggleExpanded()">
+  {{ tree.treeModel.getFocusedNode()?.isExpanded ? 'collapse' : 'expand' }}
+</button>
+<button
+  [disabled]="!tree.treeModel.getFocusedNode()"
+  (click)="tree.treeModel.getFocusedNode().blur()">
+  blur
+</button>
+<button
+  (click)="addNode(tree)">
+  Add Node
+</button>
+<button
+  (click)="activateSubSub(tree)">
+  Activate inner node
+</button>
+<button
+  (click)="tree.treeModel.expandAll()">
+  Expand All
+</button>
+<button
+  (click)="tree.treeModel.collapseAll()">
+  Collapse All
+</button>
+<button
+  (click)="activeNodes(tree.treeModel)">
+  getActiveNodes()
+</button>
