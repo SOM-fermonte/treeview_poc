@@ -192,7 +192,7 @@ export class FullTreeComponent implements OnInit {
         }
       ];
 
-      for (let i = 0; i < 1000; i++) {
+      for (let i = 0; i < 10; i++) {
         this.nodes.push({
           name: `rootDynamic${i}`,
           subTitle: `root created dynamically ${i}`,
