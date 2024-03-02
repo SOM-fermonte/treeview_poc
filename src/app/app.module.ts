@@ -7,6 +7,7 @@ import { TreeModule } from '@circlon/angular-tree-component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicTreeComponent } from './basictree/basictree.component';
+import { DTreeNodeComponent } from './dtreenode/dtreenode.component';
 import { FullTreeComponent } from './fulltree/fulltree.component';
 import { TemplatesComponent } from './templates/templates.component';
 import { FieldsComponent } from './fields/fields.component';
@@ -45,7 +46,8 @@ import { DragOverStylingFullTreeComponent } from './dragover-styling/dragover-st
     ApiComponent,
     ActionsComponent,
     ScrollContainerComponent,
-    ContextmenuComponent
+    ContextmenuComponent,
+    DTreeNodeComponent
   ],
   imports: [
     BrowserModule,

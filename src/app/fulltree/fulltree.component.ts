@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from '@circlon/angular-tree-component';
+import { DTreeNodeComponent } from '../dtreenode/dtreenode.component';
 
 `optionValue`;
 
@@ -48,14 +49,10 @@ const actionMapping: IActionMapping = {
   ],
   templateUrl: './fulltree.component.html'
 })
+
 export class FullTreeComponent implements OnInit {
   nodes: any[];
   nodes2 = [{name: 'root'}, {name: 'root2'}];
-  asyncChildren = new Array(4).fill(null).map((item, n) => ({
-    name: 'async child2.' + n,
-    subTitle: 'async child ' + n,
-    hasChildren: n < 5
-  }));
   customTemplateStringOptions: ITreeOptions = {
     // displayField: 'subTitle',
     isExpandedField: 'expanded',
@@ -80,23 +77,6 @@ export class FullTreeComponent implements OnInit {
     setTimeout(() => {
       this.nodes = [
         {
-          expanded: true,
-          name: 'root expanded',
-          subTitle: 'the root',
-          children: [
-            {
-              name: 'child2',
-              subTitle: 'a bad child',
-              hasChildren: false
-            },
-            {
-              name: 'child2',
-              subTitle: 'a bad child',
-              hasChildren: false
-            }
-          ]
-        },
-        {
           name: 'root2',
           subTitle: 'the second root',
           children: [
@@ -118,34 +98,20 @@ export class FullTreeComponent implements OnInit {
               ]
             }
           ]
-        },
-        {
-          name: 'asyncroot',
-          hasChildren: true
         }
       ];
-
-      for (let i = 0; i < 10; i++) {
-        this.nodes.push({
-          name: `rootDynamic${i}`,
-          subTitle: `root created dynamically ${i}`,
-          children: new Array(10).fill(null).map((item, n) => ({
-            name: `rootChildDynamic${i}.${n}`,
-            subTitle: `rootChildDynamicTitle${i}.${n}`
-          }))
-        });
-      }
     }, 1);
   }
 
-  getChildren(node: TreeNode) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(this.asyncChildren.map((c) => {
-        return Object.assign({}, c, {
-          hasChildren: node.level < 5
-        });
-      })), 2000);
-    });
+  getChildren(node: DTreeNodeComponent) {
+    // return new Promise((resolve, reject) => {
+    //   setTimeout(() => resolve(this.asyncChildren.map((c) => {
+    //     return Object.assign({}, c, {
+    //       hasChildren: node.level < 5
+    //     });
+    //   })), 2000);
+    // });
+    return null;
   }
 
   addNode(tree: any) {
@@ -156,7 +122,7 @@ export class FullTreeComponent implements OnInit {
     tree.treeModel.update();
   }
 
-  childrenCount(node: TreeNode): string {
+  childrenCount(node: DTreeNodeComponent): string {
     return node && node.children ? `(${node.children.length})` : '';
   }
 

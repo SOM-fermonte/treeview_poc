@@ -8,5 +8,12 @@ import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions }
 })
 
 export class DTreeNodeComponent extends TreeNode {
-  
+  qCode: string;
+  qType: number;
+  qRequired: boolean;
+  qText: string;
+  optionValue: string;
+  pass: boolean;
+  messageText: string;
+  children: DTreeNodeComponent[];
 }
