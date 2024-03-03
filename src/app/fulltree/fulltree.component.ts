@@ -75,26 +75,31 @@ export class FullTreeComponent implements OnInit {
     setTimeout(() => {
       this.nodes = [
         {
-          name: 'root2',
-          subTitle: 'the second root',
+          isAnswer: false,
+          qCode: "mde_cred_0001",
+          qType: "1",
+          qRequired: true,
+          qText: "Do you have a masters degree?",
+          optionValue: "question",
           children: [
             {
-              name: 'child2.1',
-              subTitle: 'new and improved',
+              isAnswer: true,
+              answerText: "Yes",
               uuid: '11',
+              qCode: "mde_cred_0002",
+              qType: "4",
+              qRequired: true,
+              qText: "What school did you attend?",
+              optionValue: "question",
               hasChildren: false
             }, {
-              name: 'child2.2',
-              subTitle: 'new and improved2',
-              children: [
-                {
-                  uuid: 1001,
-                  name: 'subsub',
-                  subTitle: 'subsub',
-                  hasChildren: false,
-                  isExpanded: true
-                }
-              ]
+              isAnswer: true,
+              answerText: "No",
+              uuid: '12',
+              optionValue: "branchend",
+              pass: false,
+              messageText: "You do not qualify for a permit at this time.",
+              hasChildren: false,
             }
           ]
         }

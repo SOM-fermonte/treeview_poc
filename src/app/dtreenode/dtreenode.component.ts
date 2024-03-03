@@ -23,6 +23,5 @@ export class DTreeNodeComponent extends TreeNode implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data.
   }
 }
