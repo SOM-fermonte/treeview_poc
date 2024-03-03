@@ -20,7 +20,7 @@ const actionMapping: IActionMapping = {
     },
     mouseOver: (tree, node, $event) => {
       $event.preventDefault();
-      console.log(`mouseOver ${node.data.name}`);
+      console.log(`mouseOver ${node.isAnswer}`);
     },
     mouseOut: (tree, node, $event) => {
       $event.preventDefault();
@@ -49,8 +49,8 @@ const actionMapping: IActionMapping = {
 })
 
 export class FullTreeComponent implements OnInit {
-  nodes: any[];
-  nodes2 = [{name: 'root'}, {name: 'root2'}];
+  nodes: DTreeNodeComponent[];
+  //nodes2 = [{name: 'root'}, {name: 'root2'}];
   customTemplateStringOptions: ITreeOptions = {
     // displayField: 'subTitle',
     isExpandedField: 'expanded',
@@ -77,7 +77,7 @@ export class FullTreeComponent implements OnInit {
         {
           isAnswer: false,
           qCode: "mde_cred_0001",
-          qType: "1",
+          qType: 1,
           qRequired: true,
           qText: "Do you have a masters degree?",
           optionValue: "question",
@@ -87,7 +87,7 @@ export class FullTreeComponent implements OnInit {
               answerText: "Yes",
               uuid: '11',
               qCode: "mde_cred_0002",
-              qType: "4",
+              qType: 4,
               qRequired: true,
               qText: "What school did you attend?",
               optionValue: "question",
@@ -105,10 +105,6 @@ export class FullTreeComponent implements OnInit {
         }
       ];
     }, 1);
-  }
-
-  ngAfterInitView() {
-    this.filterNodes.treeModel.expandAll();
   }
 
   getChildren(node: DTreeNodeComponent) {
