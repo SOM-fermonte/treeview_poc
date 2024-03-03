@@ -15,24 +15,26 @@
       <!-- <span title="{{node.data.subTitle}}">{{ node.data.name }}</span>
       <span class="pull-right">{{ childrenCount(node) }}</span>
       <button (click)="go($event)">Custom Action</button> -->
-      <div id="option{{node.data.name}}{{childrenCount(node)}}">
-        <div id="response">
-          <label class="padded-label">Response Option</label>
-          <div><input type="text" placeholder="Enter an option" class="node-input"></div>
+      <ng-container *ngIf="node.isAnswer == true">
+        <div id="option{{node.data.name}}{{childrenCount(node)}}">
+          <div id="response">
+            <label class="padded-label">Response Option</label>
+            <div><input type="text" placeholder="Enter an option" class="node-input"></div>
+          </div>
         </div>
-      </div>
-      <select id="nextselect" class="node-option-selector" [(ngModel)]="optionValue">
+    </ng-container>
+      <select id="nextselect" class="node-option-selector" [(ngModel)]="node.optionValue">
         <option value="question">Question</option>
         <option value="branchend">End of branch</option>
       </select>
-      <ng-container *ngIf="optionValue == 'question'">
+      <ng-container *ngIf="node.optionValue == 'question'">
         <div id="question{{node.data.name}}{{childrenCount(node)}}">
           <div id="question">
             <div><input type="text" placeholder="Type to search for questions" class="node-input"></div>
           </div>
         </div>
       </ng-container>
-      <ng-container *ngIf="optionValue == 'branchend'">
+      <ng-container *ngIf="node.optionValue == 'branchend'">
         <div id="branchend{{node.data.name}}{{childrenCount(node)}}">
           <div id="branchend">
             <div class="branch-end-grid">

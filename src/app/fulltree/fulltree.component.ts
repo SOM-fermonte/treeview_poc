@@ -2,8 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions } from '@circlon/angular-tree-component';
 import { DTreeNodeComponent } from '../dtreenode/dtreenode.component';
 
-`optionValue`;
-
 const actionMapping: IActionMapping = {
   mouse: {
     contextMenu: (tree, node, $event) => {
@@ -93,7 +91,8 @@ export class FullTreeComponent implements OnInit {
                   uuid: 1001,
                   name: 'subsub',
                   subTitle: 'subsub',
-                  hasChildren: false
+                  hasChildren: false,
+                  isExpanded: true
                 }
               ]
             }
@@ -101,6 +100,10 @@ export class FullTreeComponent implements OnInit {
         }
       ];
     }, 1);
+  }
+
+  ngAfterInitView() {
+    this.filterNodes.treeModel.expandAll();
   }
 
   getChildren(node: DTreeNodeComponent) {

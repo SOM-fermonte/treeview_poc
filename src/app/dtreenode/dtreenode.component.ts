@@ -6,7 +6,6 @@ import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions }
   styleUrls: ['./dtreenode.component.css'],
   templateUrl: './dtreenode.component.html'
 })
-
 export class DTreeNodeComponent extends TreeNode implements OnInit {
   qCode: string;
   qType: number;
@@ -15,6 +14,8 @@ export class DTreeNodeComponent extends TreeNode implements OnInit {
   optionValue: string;
   pass: boolean;
   messageText: string;
+  isAnswer: boolean;
+  answerText: string;
   children: DTreeNodeComponent[];
 
   constructor() {
@@ -22,6 +23,6 @@ export class DTreeNodeComponent extends TreeNode implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.data.
   }
 }
