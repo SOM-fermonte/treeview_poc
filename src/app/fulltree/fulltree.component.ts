@@ -53,8 +53,8 @@ export class FullTreeComponent implements OnInit {
   //nodes2 = [{name: 'root'}, {name: 'root2'}];
   customTemplateStringOptions: ITreeOptions = {
     // displayField: 'subTitle',
-    isExpandedField: 'expanded',
-    idField: 'uuid',
+    isExpandedField: 'ui_expanded',
+    idField: 'ui_uuid',
     hasChildrenField: 'nodes',
     getChildren: this.getChildren.bind(this),
     actionMapping,
