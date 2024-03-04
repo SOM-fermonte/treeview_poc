@@ -20,11 +20,11 @@ const actionMapping: IActionMapping = {
     },
     mouseOver: (tree, node, $event) => {
       $event.preventDefault();
-      console.log(`mouseOver ${node.data.uuid}`);
+      // console.log(`mouseOver ${node.data.uuid}`);
     },
     mouseOut: (tree, node, $event) => {
       $event.preventDefault();
-      console.log(`mouseOut ${node.data.uuid}`);
+      // console.log(`mouseOut ${node.data.uuid}`);
     }
   },
   keys: {
@@ -113,7 +113,7 @@ export class FullTreeComponent implements OnInit {
   }
 
   addNode(tree: any, index: number) {
-    // this.nodes.splice(index, 0, {
+    // this.nodes.push({
     //   ui_uuid: String(index),
     //   ui_expanded: true,
     //   isAnswer: false,

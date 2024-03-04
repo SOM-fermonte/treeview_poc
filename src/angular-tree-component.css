@@ -53,7 +53,7 @@ tree-viewport {
   overflow: auto;
   display: block;
 }
-.tree-children { padding-left: 20px }
+.tree-children { padding-left: 40px }
 .empty-tree-drop-slot .node-drop-slot { height: 20px; min-width: 100px }
 .angular-tree-component {
   width: 100%;
