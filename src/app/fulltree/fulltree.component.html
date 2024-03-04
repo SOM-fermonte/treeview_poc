@@ -53,7 +53,7 @@
       </ng-container>
       <div id="node-buttons" class="node-buttons-grid">
         <ng-container *ngIf="node.data.qType == 1">
-          <button id="add-option" class="common-button add-option" (click)="addOption(tree)">+ Add response option</button>
+          <button id="add-option" class="common-button add-option" (click)="addOption(tree, node.index)">+ Add response option</button>
         </ng-container>
         <button id="add-question" class="common-button add-question" (click)="addNode(tree, node.index)">+ Add question</button>
         <div class="spacer"></div>
