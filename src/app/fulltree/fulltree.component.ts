@@ -20,11 +20,11 @@ const actionMapping: IActionMapping = {
     },
     mouseOver: (tree, node, $event) => {
       $event.preventDefault();
-      console.log(`mouseOver ${node.data.isAnswer}`);
+      console.log(`mouseOver ${node.data.uuid}`);
     },
     mouseOut: (tree, node, $event) => {
       $event.preventDefault();
-      console.log(`mouseOut ${node.data.name}`);
+      console.log(`mouseOut ${node.data.uuid}`);
     }
   },
   keys: {
@@ -76,7 +76,8 @@ export class FullTreeComponent implements OnInit {
     setTimeout(() => {
       this.nodes = [
         {
-          uuid: '1',
+          ui_uuid: '1',
+          ui_expanded: true,
           isAnswer: false,
           qCode: "mde_cred_0001",
           qType: 1,
@@ -86,18 +87,20 @@ export class FullTreeComponent implements OnInit {
           children: [
             {
               isAnswer: true,
+              ui_expanded: true,
               answerText: "Yes",
-              uuid: '1.1',
+              ui_uuid: '1.1',
               qCode: "mde_cred_0002",
               qType: 4,
               qRequired: true,
               qText: "What school did you attend?",
               optionValue: "question",
-              children: []
+              hasChildren: false
             }, {
               isAnswer: true,
+              ui_expanded: true,
               answerText: "No",
-              uuid: '1.2',
+              ui_uuid: '1.2',
               optionValue: "branchend",
               pass: false,
               messageText: "You do not qualify for a permit at this time.",

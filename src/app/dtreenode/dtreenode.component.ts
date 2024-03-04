@@ -7,8 +7,8 @@ import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions }
   templateUrl: './dtreenode.component.html'
 })
 export class DTreeNodeComponent extends TreeNode implements OnInit {
-  uuid: string;
-  expanded?: boolean = true;
+  ui_uuid: string;
+  ui_expanded?: boolean = true;
   qCode?: string;
   qType?: number;
   qRequired?: boolean;
@@ -18,7 +18,7 @@ export class DTreeNodeComponent extends TreeNode implements OnInit {
   messageText?: string;
   isAnswer?: boolean;
   answerText?: string;
-  children?: DTreeNodeComponent[];
+  children: DTreeNodeComponent[];
 
   constructor() {
     super();
