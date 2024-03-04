@@ -112,9 +112,9 @@ export class FullTreeComponent implements OnInit {
     return null;
   }
 
-  addNode(tree: any) {
-    this.nodes[0].children.push({
-      ui_uuid: '2',
+  addNode(tree: any, index: number) {
+    this.nodes.splice(index, 0, {
+      ui_uuid: String(index),
       ui_expanded: true,
       isAnswer: false,
       optionValue: 'question',
@@ -141,8 +141,10 @@ export class FullTreeComponent implements OnInit {
   }
 
   removeNode(tree:any, index: number) {
-    this.nodes[0].children.slice(index, 1);
-    tree.treeModel.update();
+    if (index != 0) {
+      this.nodes.splice(index, 1);
+      tree.treeModel.update();
+    }
   }
 
   childrenCount(node: DTreeNodeComponent): string {
