@@ -52,10 +52,14 @@
         </div>
       </ng-container>
       <div id="node-buttons" class="node-buttons-grid">
-        <button id="add-option" class="common-button add-option" (click)="addNode(tree)">+ Add response option</button>
+        <ng-container *gnIf="node.data.qType == 1">
+          <button id="add-option" class="common-button add-option" (click)="addNode(tree)">+ Add response option</button>
+        </ng-container>
         <button id="add-question" class="common-button add-question">+ Add question</button>
         <div class="spacer"></div>
-        <button id="qdetails" class="common-button qdetails">View details</button>
+        <ng-container *ngIf="node.data.optionValue == 'question'">
+          <button id="qdetails" class="common-button qdetails">View details</button>
+        </ng-container>
         <button id="deleteitem" class="common-button deleteitem">Delete</button>
       </div>
     </ng-template>
