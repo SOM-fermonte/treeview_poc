@@ -112,31 +112,31 @@ export class FullTreeComponent implements OnInit {
     return null;
   }
 
-  addNode(tree: any, index: number) {
-    // this.nodes.push({
-    //   ui_uuid: String(index),
-    //   ui_expanded: true,
-    //   isAnswer: false,
-    //   optionValue: 'question',
-    //   qCode: '',
-    //   qRequired: true,
-    //   qText: '',
-    //   qType: 0
-    // });
+  addNode(tree: any) {
+    this.nodes.push({
+      ui_uuid: `${this.nodes.length}`,
+      ui_expanded: true,
+      isAnswer: false,
+      optionValue: 'question',
+      qCode: '',
+      qRequired: true,
+      qText: '',
+      qType: 0
+    });
     tree.treeModel.update();
   }
 
-  addOption(tree: any, index: number) {
-    // this.nodes.splice(index, 0, {
-    //   ui_uuid: '2',
-    //   ui_expanded: true,
-    //   isAnswer: true,
-    //   answerText: '',
-    //   qCode: '',
-    //   qRequired: true,
-    //   qText: '',
-    //   qType: 0
-    // });
+  addOption(tree: any) {
+    this.nodes.push({
+      ui_uuid: `${this.nodes.length}`,
+      ui_expanded: true,
+      isAnswer: true,
+      answerText: '',
+      qCode: '',
+      qRequired: true,
+      qText: '',
+      qType: 0
+    });
     tree.treeModel.update();
   }
 
