@@ -19,7 +19,7 @@
         <div id="option{{node.data.name}}{{childrenCount(node)}}">
           <div id="response">
             <label class="padded-label">Response Option</label>
-            <div><input type="text" placeholder="Enter an option" class="node-input" [value]='node.data.answerText'></div>
+            <div><input type="text" placeholder="Enter an option" class="node-input" [value]="node.data.answerText"></div>
           </div>
         </div>
     </ng-container>
@@ -30,7 +30,7 @@
       <ng-container *ngIf="node.data.optionValue == 'question'">
         <div id="question{{node.data.name}}{{childrenCount(node)}}">
           <div id="question">
-            <div><input type="text" placeholder="Type to search for questions" class="node-input" [value]='node.data.qText'></div>
+            <div><input type="text" placeholder="Type to search for questions" class="node-input" [value]="node.data.qText"></div>
           </div>
         </div>
       </ng-container>
@@ -40,13 +40,13 @@
             <div class="branch-end-grid">
               <label class="switch">
                 <input type="checkbox" id="togBtn">
-                <div class="slider round" style="display: inline-block;"> 
+                <div class="slider round" style="display: inline-block;" [value]="node.data.pass"> 
                   <span class="on">Pass</span>
                   <span class="off">Fail</span>
                 </div>
               </label>
               <label class="message-label">Message</label>
-              <input type="text" placeholder="Please type a message to display" class="message-input" [value]='node.data.messageText'>
+              <input type="text" placeholder="Please type a message to display" class="message-input" [value]="node.data.messageText">
             </div>
           </div>
         </div>

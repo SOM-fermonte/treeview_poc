@@ -7,16 +7,18 @@ import { TreeNode, TreeModel, TREE_ACTIONS, KEYS, IActionMapping, ITreeOptions }
   templateUrl: './dtreenode.component.html'
 })
 export class DTreeNodeComponent extends TreeNode implements OnInit {
-  qCode: string;
-  qType: number;
-  qRequired: boolean;
-  qText: string;
-  optionValue: string;
-  pass: boolean;
-  messageText: string;
-  isAnswer: boolean;
-  answerText: string;
-  children: DTreeNodeComponent[];
+  uuid: string;
+  expanded?: boolean = true;
+  qCode?: string;
+  qType?: number;
+  qRequired?: boolean;
+  qText?: string;
+  optionValue?: string;
+  pass?: boolean;
+  messageText?: string;
+  isAnswer?: boolean;
+  answerText?: string;
+  children?: DTreeNodeComponent[];
 
   constructor() {
     super();
