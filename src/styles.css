@@ -139,11 +139,12 @@ tree-node:last-child > .tree-node > .tree-children::after {
 
 .spacer{
   grid-area: spacer;
+  width: 100%;
 }
 
 .node-buttons-grid{
   display: grid;
-  grid-template-areas: 'add-option add-question add-end spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer qdetails deleteitem';
+  grid-template-areas: 'add-option add-question spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer spacer qdetails deleteitem';
   gap: 8px;
   padding: 8px;
 }
@@ -174,6 +175,24 @@ tree-node:last-child > .tree-node > .tree-children::after {
   padding: 8px;
 }
 
+.info-table{
+  width: auto;
+}
+
+.info-table.td-label{
+  font-weight: 500;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.info-table.td-data{
+  min-width: 60px;
+  padding: 4px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #a0a0a0;
+  border-radius: 2px;
+}
 
 
 /* ----- */
