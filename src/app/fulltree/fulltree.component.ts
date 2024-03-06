@@ -8,11 +8,11 @@ const actionMapping: IActionMapping = {
       $event.preventDefault();
       alert(`context menu for ${node.data.name}`);
     },
-    dblClick: (tree, node, $event) => {
-      if (node.hasChildren) {
-        TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
-      }
-    },
+    // dblClick: (tree, node, $event) => {
+    //   if (node.hasChildren) {
+    //     TREE_ACTIONS.TOGGLE_EXPANDED(tree, node, $event);
+    //   }
+    // },
     click: (tree, node, $event) => {
       $event.shiftKey
         ? TREE_ACTIONS.TOGGLE_ACTIVE_MULTI(tree, node, $event)
@@ -43,11 +43,12 @@ export class FullTreeComponent implements OnInit {
   customTemplateStringOptions: ITreeOptions = {
     // displayField: 'subTitle',
     isExpandedField: 'ui_expanded',
-    idField: 'ui_uuid',
+    // idField: 'ui_uuid',
     hasChildrenField: 'nodes',
     getChildren: this.getChildren.bind(this),
     actionMapping,
     nodeHeight: 23,
+    levelPadding: 40,
     allowDrag: (node) => {
       // console.log('allowDrag?');
       return true;
@@ -65,7 +66,6 @@ export class FullTreeComponent implements OnInit {
     setTimeout(() => {
       this.nodes = [
         {
-          ui_uuid: '1',
           ui_expanded: true,
           isAnswer: false,
           qCode: "mde_cred_0001",
@@ -78,22 +78,20 @@ export class FullTreeComponent implements OnInit {
               isAnswer: true,
               ui_expanded: true,
               answerText: "Yes",
-              ui_uuid: '1.1',
               qCode: "mde_cred_0002",
               qType: 4,
               qRequired: true,
               qText: "What school did you attend?",
               optionValue: "question",
-              hasChildren: false
+              children: []
             }, {
               isAnswer: true,
               ui_expanded: true,
               answerText: "No",
-              ui_uuid: '1.2',
               optionValue: "branchend",
               pass: false,
               messageText: "You do not qualify for a permit at this time.",
-              hasChildren: false,
+              children: [],
             }
           ]
         }
@@ -112,39 +110,66 @@ export class FullTreeComponent implements OnInit {
     return null;
   }
 
-  addNode(tree: any) {
-    this.nodes.push({
-      ui_uuid: `${this.nodes.length}`,
+  addNode(tree: any, node: any) {
+    var newNode = {
       ui_expanded: true,
       isAnswer: false,
       optionValue: 'question',
       qCode: '',
       qRequired: true,
       qText: '',
-      qType: 0
-    });
+      qType: 0,
+      children: []
+    };
+    //hacky trick to make new questions be peers of the current node
+    if (node.level == 1) {
+      this.nodes.push(newNode);
+    } else {
+      node.parent.data.children.push(newNode);
+    }
     tree.treeModel.update();
   }
 
-  addOption(tree: any) {
-    this.nodes.push({
-      ui_uuid: `${this.nodes.length}`,
+  addOption(tree: any, node: any) {
+    node.data.children.push({
       ui_expanded: true,
       isAnswer: true,
       answerText: '',
       qCode: '',
       qRequired: true,
       qText: '',
-      qType: 0
+      qType: 0,
+      children: []
     });
     tree.treeModel.update();
+    tree.treeModel.expandAll();
   }
 
-  removeNode(tree:any, index: number) {
-    if (index != 0) {
-      this.nodes.splice(index, 1);
+  removeNode(tree:any, node: any) {
+    if (!(node.isRoot && (node.index == 0))){
+      console.log(`Node level is ${node.level}`);
+      if (node.level == 1){
+        this.nodes.splice(node.index, 1)
+      } else {
+        node.parent.data.children.splice(node.index, 1);
+      }
       tree.treeModel.update();
     }
+  }
+
+  clearTree(tree:any){
+    this.nodes = [
+      {
+        ui_expanded: true,
+        isAnswer: false,
+        qCode: "",
+        qType: 0,
+        qRequired: false,
+        qText: "",
+        optionValue: "question",
+        children: []
+      }
+    ]
   }
 
   childrenCount(node: DTreeNodeComponent): string {
@@ -176,5 +201,9 @@ export class FullTreeComponent implements OnInit {
 
   activeNodes(treeModel: TreeModel) {
     console.log(treeModel.activeNodes);
+  }
+
+  saveState(tree: any){
+    console.log(`${JSON.stringify(this.nodes)}`);
   }
 }
